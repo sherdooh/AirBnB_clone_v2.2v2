@@ -10,7 +10,8 @@ class FileStorage:
 
     def all(self, cls=None):
         """Returns a dictionary of objects in cls"""
-        return cls.__objects
+        if cls:
+            return cls.__objects
 
     def new(self, obj):
         """Adds new object to storage dictionary"""
@@ -51,5 +52,9 @@ class FileStorage:
 
     def delete(self, obj=None):
         """deletes  obj if it exists"""
-        if obj in FileStorage.__objects:
-            del obj
+        if obj != None:
+            try:
+                if obj in FileStorage.__objects:
+                    del obj
+            except AttributeError:
+                print("wrong attribute")
