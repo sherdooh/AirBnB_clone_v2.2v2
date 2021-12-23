@@ -31,6 +31,11 @@ class BaseModel:
                     value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
                 if key != "__class__":
                     setattr(self, key, value)
+                #above = ("created _at", "updated_at", "__class__")
+                #if key not in above:
+                    #if key and value:
+                        #key = self.key.save()
+                        #value = self.value.save()
 
     def __str__(self):
         """Returns a string representation of the instance"""
