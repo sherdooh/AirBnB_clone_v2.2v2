@@ -12,7 +12,7 @@ from sqlalchemy import String
 from sqlalchemy.orm import relationship
 
 
-class State(BaseModel):
+class State(BaseModel, Base):
     """ State class """
     if models.storage_t == "db":
         __tablename__ = "states"
