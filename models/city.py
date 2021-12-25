@@ -13,6 +13,7 @@ from sqlalchemy.orm import relationship
 
 class City(BaseModel, Base):
     """ The city class, contains state ID and name """
+<<<<<<< HEAD
     if models.storage_t == "db":
         state_id = Column(String(60), ForeignKey("states.id"), nullable=False)
         name = Column(String(128), nullable=False)
@@ -25,3 +26,14 @@ class City(BaseModel, Base):
     def __init__(self, *args, **kwargs):
         """initializes city"""
         super().__init__(*args, **kwargs)
+=======
+    __tablename__ = "cities"
+    if storage_type == 'db':
+        state_id = Column(String(60), ForeignKey("states.id"), nullable=False)
+        name = Column(String(128), nullable=False)
+        places = relationship("Place", backref="cities",
+                              cascade="all, delete, delete_orphan")
+    else:
+        name = ''
+        state_id = ''
+>>>>>>> 96d932ff964b5c41b97f579bcd2e1b508fbbb4fe

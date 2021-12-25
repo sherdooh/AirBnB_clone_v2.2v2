@@ -5,6 +5,7 @@ from os import getenv
 from models.base_model import Base
 from models.base_model import BaseModel
 from models.review import Review
+<<<<<<< HEAD
 from models.amenity import Amenity
 import sqlalchemy
 from sqlalchemy import Column
@@ -13,20 +14,25 @@ from sqlalchemy import ForeignKey
 from sqlalchemy import Integer
 from sqlalchemy import String
 from sqlalchemy import Table
+=======
+from sqlalchemy import Column, Float, ForeignKey
+from sqlalchemy import Integer, String, Table
+>>>>>>> 96d932ff964b5c41b97f579bcd2e1b508fbbb4fe
 from sqlalchemy.orm import relationship
-
+from models import storage_type
 
 if models.storage_t == 'db':
     place_amenity = Table("place_amenity", Base.metadata,
                           Column("place_id", String(60),
                                  ForeignKey("places.id"),
-                                 primary_key=True, nullable=False),
+                                  primary_key=True, nullable=False),
                           Column("amenity_id", String(60),
                                  ForeignKey("amenities.id"),
                                  primary_key=True, nullable=False))
 
 
 class Place(BaseModel, Base):
+<<<<<<< HEAD
     """Represents a Place for a MySQL database.
     Inherits from SQLAlchemy Base and links to the MySQL table places.
     Attributes:
@@ -46,6 +52,10 @@ class Place(BaseModel, Base):
         amenity_ids (list): An id list of all linked amenities.
     """
     if models.storage_t == 'db':
+=======
+    """Represents a Place Table for a MySQL database"""
+    if storage_type == 'db':
+>>>>>>> 96d932ff964b5c41b97f579bcd2e1b508fbbb4fe
         __tablename__ = "places"
         city_id = Column(String(60), ForeignKey("cities.id"), nullable=False)
         user_id = Column(String(60), ForeignKey("users.id"), nullable=False)
@@ -60,6 +70,10 @@ class Place(BaseModel, Base):
         reviews = relationship("Review", backref="place", cascade="delete")
         amenities = relationship("Amenity", secondary="place_amenity",
                                  viewonly=False)
+<<<<<<< HEAD
+=======
+        amenity_ids = []
+>>>>>>> 96d932ff964b5c41b97f579bcd2e1b508fbbb4fe
     else:
         city_id = ""
         user_id = ""
@@ -72,10 +86,13 @@ class Place(BaseModel, Base):
         latitude = 0.0
         longitude = 0.0
         amenity_ids = []
+<<<<<<< HEAD
 
     def __init__(self, *args, **kwargs):
         """initializes Place"""
         super().__init__(*args, **kwargs)
+=======
+>>>>>>> 96d932ff964b5c41b97f579bcd2e1b508fbbb4fe
 
     if models.storage_t != "db":
         @property
