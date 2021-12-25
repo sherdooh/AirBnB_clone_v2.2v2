@@ -14,7 +14,6 @@ from sqlalchemy import Integer
 from sqlalchemy import String
 from sqlalchemy import Table
 from sqlalchemy.orm import relationship
-from models import storage_type
 
 if models.storage_t == 'db':
     place_amenity = Table("place_amenity", Base.metadata,
