@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Module to create a mysql engine"""
-
-import os
+from os
+import sqlalchemy
 from models.base_model import BaseModel, Base
 from models.user import User
 from models.state import State
@@ -14,13 +14,12 @@ from sqlalchemy.orm import scoped_session
 from sqlalchemy.orm import sessionmaker
 
 
+classes = {"Amenity": Amenity, "City": City,
+           "Place": Place, "Review": Review, "State": State, "User": User}
+
 class DBStorage:
     """This class creates the engine for a mysql database
     storage system"""
-
-    all_classes = {"BaseModel": BaseModel, "User": User, "State": State,
-                   "City": City, "Amenity": Amenity, "Place": Place,
-                   "Review": Review}
     __engine = None
     __session = None
 
@@ -71,3 +70,7 @@ class DBStorage:
                                        expire_on_commit=False)
         Session = scoped_session(session_factory)
         self.__session = Session()
+
+    def close(self):
+        """call remove() method on the private session attribute"""
+        self.__session.remove()
