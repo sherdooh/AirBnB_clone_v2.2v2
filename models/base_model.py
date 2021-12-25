@@ -7,7 +7,7 @@ from sqlalchemy import Column
 from sqlalchemy import DateTime
 from sqlalchemy import String
 
-Base = declarative_base
+Base = declarative_base()
 
 
 class BaseModel:
@@ -15,7 +15,8 @@ class BaseModel:
 
     id = Column(String(60),
                 nullable=False,
-                primary_key=True).distinct()
+                primary_key=True,
+                unique=True)
     created_at = Column(nullable=False,
                         default=datetime.utcnow())
     updated_at = Column(nullable=False,
