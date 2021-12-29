@@ -17,6 +17,7 @@ from sqlalchemy.orm import sessionmaker
 classes = {"Amenity": Amenity, "City": City,
            "Place": Place, "Review": Review, "State": State, "User": User}
 
+
 class DBStorage:
     """This class creates the engine for a mysql database
     storage system"""
