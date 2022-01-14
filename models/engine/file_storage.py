@@ -11,8 +11,8 @@ from models.review import Review
 
 
 classes = {'BaseModel': BaseModel, 'User': User, 'Place': Place,
-            'State': State, 'City': City, 'Amenity': Amenity,
-            'Review': Review}
+           'State': State, 'City': City, 'Amenity': Amenity,
+           'Review': Review}
 
 
 class FileStorage:
@@ -55,7 +55,7 @@ class FileStorage:
                 temp = json.load(f)
                 for key, val in temp.items():
                     self.all()[key] = classes[val['__class__']](**val)
-        except:
+        except Exception:
             pass
 
     def delete(self, obj=None):
